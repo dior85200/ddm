@@ -9,22 +9,20 @@
 body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; padding: 20px; background-color: #f0f2f5; }
 h1 { text-align: center; color: #1a73e8; font-size: 28px; margin-bottom: 10px; }
 
-.summary-bar {
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:15px;
-    color:#0b8043;
-}
+.summary-bar { text-align:center; font-size:20px; font-weight:bold; margin-bottom:15px; color:#0b8043; }
 
 .reset-btn {
-    display:block;
-    margin:10px auto 20px;
-    padding:10px 20px;
-    font-size:18px;
+    display:block; margin:10px auto 20px; padding:10px 20px;
+    font-size:18px; border:none; border-radius:8px;
+    background:#d93025; color:#fff;
+}
+
+.group-btn {
+    font-size:14px;
+    padding:6px 10px;
     border:none;
-    border-radius:8px;
-    background:#d93025;
+    border-radius:6px;
+    background:#1a73e8;
     color:#fff;
 }
 
@@ -32,7 +30,7 @@ h1 { text-align: center; color: #1a73e8; font-size: 28px; margin-bottom: 10px; }
 .leader-title { color:#d93025; font-weight:bold; font-size:22px; margin-bottom:10px; }
 
 .group-card { background:#fff; padding:15px; border-radius:12px; margin-bottom:15px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-.group-header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:8px; margin-bottom:12px; }
+.group-header { display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #eee; padding-bottom:8px; margin-bottom:12px; gap:10px; flex-wrap:wrap;}
 .group-name { font-size:22px; font-weight:bold; }
 .group-count { background:#e8f0fe; color:#1967d2; padding:4px 12px; border-radius:20px; font-size:16px; font-weight:bold; }
 
@@ -78,15 +76,14 @@ const data = [
 const groupsContainer = document.getElementById('groups');
 
 function createGroups() {
-    data.forEach(item => {
+    data.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'group-card';
-
         const total = item.members.length;
 
         let membersHtml = item.members.map(name => `
             <label class="member-item">
-                <input type="checkbox">
+                <input type="checkbox" class="member-checkbox">
                 <span>${name}</span>
             </label>
         `).join('');
@@ -95,6 +92,7 @@ function createGroups() {
             <div class="group-header">
                 <span class="group-name">${item.group}</span>
                 <span class="group-count">已到 <span class="checked-count">0</span> / ${total}</span>
+                <button class="group-btn" onclick="toggleGroup(${index}, this)">本組全到</button>
             </div>
             <div class="member-list">${membersHtml}</div>
         `;
@@ -103,10 +101,24 @@ function createGroups() {
     updateTotalPeople();
 }
 
+function toggleGroup(groupIndex, btn) {
+    const card = document.querySelectorAll('.group-card')[groupIndex];
+    const checkboxes = card.querySelectorAll('.member-checkbox');
+    const allChecked = [...checkboxes].every(cb => cb.checked);
+
+    checkboxes.forEach(cb => {
+        cb.checked = !allChecked;
+        cb.parentElement.classList.toggle('checked', cb.checked);
+    });
+
+    btn.textContent = allChecked ? "本組全到" : "取消全到";
+    updateCounts();
+}
+
 function updateCounts() {
     document.querySelectorAll('.group-card').forEach(card => {
-        const checkboxes = card.querySelectorAll('input');
-        const checked = card.querySelectorAll('input:checked').length;
+        const checkboxes = card.querySelectorAll('.member-checkbox');
+        const checked = card.querySelectorAll('.member-checkbox:checked').length;
         card.querySelector('.checked-count').textContent = checked;
     });
 
@@ -122,11 +134,12 @@ function updateTotalPeople() {
 function resetAll() {
     document.querySelectorAll('input').forEach(cb => cb.checked = false);
     document.querySelectorAll('.member-item').forEach(el => el.classList.remove('checked'));
+    document.querySelectorAll('.group-btn').forEach(btn => btn.textContent = "本組全到");
     updateCounts();
 }
 
 document.addEventListener('change', function(e) {
-    if (e.target.tagName === 'INPUT') {
+    if (e.target.classList.contains('member-checkbox') || e.target.closest('.leader-section')) {
         const label = e.target.parentElement;
         label.classList.toggle('checked', e.target.checked);
         updateCounts();
