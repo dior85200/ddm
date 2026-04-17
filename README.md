@@ -1,117 +1,221 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>菩薩戒勇者修行之路</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法鼓山活動行前確認</title>
+
 <style>
-body{
-font-family:-apple-system,BlinkMacSystemFont;
-background:linear-gradient(#f4f1e8,#e8dcc7);
-text-align:center;
-padding:20px;
-margin:0;
+body {
+  font-family: "Noto Sans TC","Microsoft JhengHei",sans-serif;
+  background-image: url('https://fagushan.ddm.org.tw/files/file_pool/1/0M005733797053262001/P75420150204010005s2.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.8;
 }
-.card{
-background:white;
-padding:25px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-max-width:420px;
-margin:auto;
+
+/* 毛玻璃卡片 */
+.card {
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(5px);
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
 }
-h2{color:#8c6239}
-button{
-display:block;
-width:100%;
-padding:14px;
-margin:8px 0;
-border-radius:12px;
-border:none;
-background:#8c6239;
-color:white;
-font-size:16px;
+
+/* 長輩模式 */
+.elder {
+  font-size: 1.3em;
+  line-height: 2;
+  font-weight: 600;
 }
-button:hover{opacity:.9}
-.progress{
-height:8px;
-background:#ddd;
-border-radius:10px;
-margin-bottom:15px;
-overflow:hidden;
+
+.elder h1 { font-size: 34px; font-weight: 800; }
+.elder h2 { font-size: 26px; font-weight: 700; }
+.elder h3 { font-size: 22px; font-weight: 700; }
+
+.elder li,
+.elder span {
+  font-size: 1.2em;
+  font-weight: 600;
 }
-.bar{
-height:8px;
-background:#4caf50;
-width:0%;
+
+/* 標題 */
+h1 { color: #b00020; text-align: center; margin-top: 0; }
+h2 { text-align: center; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+
+h3 {
+  background: #f3f3f3;
+  padding: 6px 15px;
+  border-left: 5px solid #b00020;
+  margin-top: 25px;
 }
-.result{margin-top:10px;font-weight:bold}
+
+h4 { margin-top: 20px; }
+
+/* 倒數 */
+.countdown {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #b00020;
+  margin: 15px 0;
+}
+
+/* 勾選 */
+ul { padding-left: 20px; }
+li { margin-bottom: 10px; }
+
+label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 6px;
+  transform: scale(1.3);
+}
+
+input[type="checkbox"]:checked + span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* 按鈕 */
+.btn-container {
+  text-align: center;
+  margin-top: 25px;
+}
+
+button {
+  background-color: #b00020;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 底部圖片 */
+.footer-img {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer-img img {
+  width: 100%;
+  max-width: 650px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.footer-img p {
+  font-size: 18px;
+  margin-top: 10px;
+}
 </style>
 </head>
+
 <body>
 
-<div class="card">
-<h2>🧘 菩薩戒勇者修行之路</h2>
-<div class="progress"><div class="bar" id="bar"></div></div>
-<p id="question"></p>
-<div id="answers"></div>
-<p class="result" id="result"></p>
+<div class="card" id="mainCard">
+
+<h1>法鼓山寶雲寺 朝山菩薩第四車專用</h1>
+<h2>04/18～04/19「朝山・巡禮・憶師恩」</h2>
+
+<div class="countdown" id="countdown"></div>
+
+<div class="btn-container">
+  <button onclick="toggleElder()">👴 大字模式</button>
 </div>
 
+<h3>📌 行前提醒</h3>
+<ul>
+<li>
+  <span style="color:red; font-weight:bold;">07:00</span> 市議會集合，
+  <span style="color:red; font-weight:bold;">07:50</span> 準時出發（逾時不候）
+</li>
+<li>您為第____車</li>
+<li>請用後背包利於走路</li>
+</ul>
+
+<h3>✅ 行前確認清單</h3>
+
+<h4>🍱 餐食準備</h4>
+<ul>
+  <li><label><input type="checkbox"><span>早齋需自理(車上不提供)</span></label></li>
+  <li><label><input type="checkbox"><span>已攜帶湯匙或筷子(回程藥石用)(★不必帶便當盒）</span></label></li>
+</ul>
+
+<h4>🛏️ 住宿與個人物品</h4>
+<ul>
+  <li><label><input type="checkbox"><span>已準備後背包 方便朝山・巡禮。</span></label></li>
+  <li><label><input type="checkbox"><span>已準備睡袋</span></label></li>
+  <li><label><input type="checkbox"><span>已準備拖鞋</span></label></li>
+  <li><label><input type="checkbox"><span>已準備沐浴乳、洗髮精(總本山不提供)</span></label></li>
+  <li><label><input type="checkbox"><span>已準備牙刷、牙膏</span></label></li>
+  <li><label><input type="checkbox"><span>已準備毛巾</span></label></li>
+  <li><label><input type="checkbox"><span>已準備水杯</span></label></li>
+  <li><label><input type="checkbox"><span>已準備雨具</span></label></li>
+  <li><label><input type="checkbox"><span><strong>已準備白色透明雨衣（朝山必備）</strong></span></label></li>
+  <li><label><input type="checkbox"><span>已準備遮陽帽</span></label></li>
+  <li><label><input type="checkbox"><span>已準備外套與保暖衣物</span></label></li>
+  <li><label><input type="checkbox"><span>已準備替換衣物</span></label></li>
+  <li><label><input type="checkbox"><span>已攜帶健保卡</span></label></li>
+  <li><label><input type="checkbox"><span>已攜帶個人藥品</span></label></li>
+</ul>
+
+<h4>👕 服裝確認</h4>
+<ul>
+  <li><label><input type="checkbox"><span>已準備樸素衣褲</span></label></li>
+  <li><label><input type="checkbox"><span>已準備義工服(出坡義工)</span></label></li>
+</ul>
+
+<div class="btn-container">
+  <button onclick="resetChecks()">清除勾選</button>
+</div>
+
+
 <script>
-const quiz = [
-{q:"睡袋或棉被要自備嗎？",a:["要","不用"],c:0},
-{q:"可以攜帶個人電腦嗎？",a:["可以","不可以"],c:1},
-{q:"起板時間是？",a:["4:10","6:00"],c:0},
-{q:"戒期間可以聊天嗎？",a:["可以","不可以"],c:1},
-{q:"進齋堂應該？",a:["念佛依序入","邊走邊聊天"],c:0},
-{q:"作息依什麼為準？",a:["自己決定","法器訊號"],c:1},
-{q:"可以私自換床位嗎？",a:["可以","不可以"],c:1},
-{q:"吃完飯要？",a:["默念佛號","滑手機"],c:0}
-];
+// 倒數計時
+const target = new Date("2026-04-18T07:50:00");
 
-let index=0;
-let score=0;
+function updateCountdown() {
+  const now = new Date();
+  const diff = target - now;
 
-function load(){
-if(index>=quiz.length){
-document.getElementById("question").innerHTML=
-"🎉 圓滿受戒勇者！<br>得分："+score+"/"+quiz.length+
-"<br><br><button onclick='restart()'>重新挑戰</button>";
-document.getElementById("answers").innerHTML="";
-document.getElementById("bar").style.width="100%";
-return;
+  if (diff <= 0) {
+    document.getElementById("countdown").innerHTML = "🚍 已出發";
+    return;
+  }
+
+  const h = Math.floor(diff / (1000 * 60 * 60));
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
+  document.getElementById("countdown").innerHTML =
+    `⏰ 距離出發還有：${h} 小時 ${m} 分 ${s} 秒`;
 }
 
-document.getElementById("question").innerText=quiz[index].q;
-let html="";
-quiz[index].a.forEach((text,i)=>{
-html+=`<button onclick="answer(${i})">${text}</button>`;
-});
-document.getElementById("answers").innerHTML=html;
-document.getElementById("result").innerText="";
-document.getElementById("bar").style.width=
-((index/quiz.length)*100)+"%";
+setInterval(updateCountdown, 1000);
+
+// 長輩模式
+function toggleElder() {
+  document.getElementById("mainCard").classList.toggle("elder");
 }
 
-function answer(i){
-if(i===quiz[index].c){
-score++;
-document.getElementById("result").innerText="✅ 正確！";
-}else{
-document.getElementById("result").innerText="❌ 再想想";
+// 清除勾選
+function resetChecks() {
+  document.querySelectorAll("input[type=checkbox]").forEach(cb => cb.checked=false);
 }
-index++;
-setTimeout(load,800);
-}
-
-function restart(){
-index=0;
-score=0;
-load();
-}
-
-load();
 </script>
-
-</body>
-</html>
+<!-- 日程表 -->
+<div class="footer-img">
+  <img src="https://raw.githubusercontent.com/dior85200/DDM-checklist/main/朝山日程表.jpg">
+  <p>🗓️ 朝山日程表</p>
+</div>
