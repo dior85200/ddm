@@ -137,7 +137,7 @@ button {
 <h3>📌 行前提醒</h3>
 <ul>
 <li>
-  <span style="color:red; font-weight:bold;">07:00</span> 市議會集合，
+  <span style="color:red; font-weight:bold;">07:30</span> 市議會集合，
   <span style="color:red; font-weight:bold;">07:50</span> 準時出發（逾時不候）
 </li>
 <li>您為第____車</li>
@@ -183,7 +183,7 @@ button {
 
 <script>
 // 倒數計時
-const target = new Date("2026-04-18T07:50:00");
+const target = new Date("2026-04-18T07:30:00");
 
 function updateCountdown() {
   const now = new Date();
