@@ -125,7 +125,7 @@ button {
 
 <div class="card" id="mainCard">
 
-<h1>法鼓山寶雲寺 朝山菩薩第四車專用</h1>
+<h1>法鼓山寶雲寺 朝山菩薩(通用版)</h1>
 <h2>04/18～04/19「朝山・巡禮・憶師恩」</h2>
 
 <div class="countdown" id="countdown"></div>
