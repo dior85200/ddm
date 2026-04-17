@@ -140,7 +140,6 @@ button {
   <span style="color:red; font-weight:bold;">07:30</span> 市議會集合，
   <span style="color:red; font-weight:bold;">07:50</span> 準時出發（逾時不候）
 </li>
-<li>您為第____車</li>
 <li>請用後背包利於走路</li>
 </ul>
 
